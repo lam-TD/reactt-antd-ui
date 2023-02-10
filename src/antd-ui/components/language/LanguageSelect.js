@@ -1,17 +1,19 @@
-
 import React from 'react';
 import {Select} from "antd";
+import {useTranslation} from "react-i18next";
 
-const LanguageSelect = ({items}) => {
+const LanguageSelect = ({onChange, initLanguage = 'en'}) => {
+	const {i18n} = useTranslation();
 	const handleChange = (value) => {
-		console.log(`selected ${value}`);
+		i18n.changeLanguage(value)
+		onChange(value)
 	};
 	return <>
 		<Select
-			defaultValue="lucy"
+			defaultValue={initLanguage}
 			theme="dark"
 			style={{
-				width: 120,
+				width: '100%',
 			}}
 			onChange={handleChange}
 			options={[

@@ -1,0 +1,8 @@
+{
+  "login": "Đăng nhập",
+  "login_type": "Ldap",
+  "remember_me": "Nhớ tôi",
+  "username": "Tên đăng nhập",
+  "password": "Mật khẩu",
+  "forgot_password": "Quên mật khẩu"
+}

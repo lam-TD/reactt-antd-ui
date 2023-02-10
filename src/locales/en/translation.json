@@ -1,0 +1,9 @@
+{
+  "Welcome to React": "Welcome to React and react-i18next",
+  "login": "Log In",
+  "login_type": "Ldap",
+  "remember_me": "Remember me",
+  "username": "Username",
+  "password": "Password",
+  "forgot_password": "Forgot password"
+}
