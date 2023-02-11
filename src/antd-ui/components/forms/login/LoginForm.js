@@ -6,7 +6,7 @@ import {useTranslation} from 'react-i18next';
 import LanguageSelect from "../../language/LanguageSelect";
 
 const {Option} = Select;
-const LoginForm = ({onSubmit, defaultData = {}}) => {
+const LoginForm = ({onSubmit, defaultData = {}, disabled = false}) => {
 	const {t} = useTranslation();
 	const [form] = Form.useForm();
 	const inputRef = useRef(null);
@@ -25,6 +25,7 @@ const LoginForm = ({onSubmit, defaultData = {}}) => {
 	return (
 		<Form
 			form={form}
+			disabled={disabled}
 			name="normal_login"
 			className="login-form"
 			style={{width: 600}}

@@ -1,5 +1,5 @@
 import {Route, Routes} from "react-router-dom";
-import {HomePage, LoginPage, TransferPage} from "./pages";
+import {HomePage, LoginPage, TransferPage} from "./features";
 import {AntLayout, NotFoundPage} from "../antd-ui";
 
 const BaseRoutes = () => {

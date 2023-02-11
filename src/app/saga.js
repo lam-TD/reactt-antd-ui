@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects';
-import loginSaga from "./pages/auth/login/loginSaga";
+import loginSaga from "./features/auth/login/loginSaga";
 
 function *sayHiSaga() {
 	console.log('Hi Saga')

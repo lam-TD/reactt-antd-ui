@@ -6,21 +6,8 @@ import BaseRoutes from './routes';
 import 'antd/dist/reset.css';
 import './i18next';
 
-import { createServer } from "miragejs"
-
-// let server = createServer()
-// server.get("/api/users", { users: [{ id: 1, name: "Bob" }] })
-
 function App() {
-	let [users, setUsers] = useState([])
-	useEffect(() => {
-		fetch("/api/users")
-			.then((res) => res.json())
-			.then((json) => {
-				console.log(json.users);
-				setUsers(json.users)
-			})
-	}, [])
+
 	return (
 		<div className="App">
 			<BrowserRouter>

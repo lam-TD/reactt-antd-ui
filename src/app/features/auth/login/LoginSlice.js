@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {fetchLoginInfo} from "./LoginApi";
+import {fetchLoginInfo, getInfoLogin} from "./LoginApi";
 
 const initialState = {
 	value: 0,
@@ -16,15 +16,27 @@ export const loadLoginInfo = createAsyncThunk(
 	}
 );
 
+export const getLoginInfo = createAsyncThunk(
+	'login/info',
+	async (companyCode) => {
+		const response = await getInfoLogin(companyCode);
+		return response.data
+	}
+)
+
+export const handleLogin = createAsyncThunk(
+	'login/submit',
+	async (credentials) => {
+		const response = await login(credentials);
+		return response.data
+	}
+)
 
 export const loginSlice = createSlice({
 	name: 'login',
 	initialState,
 	reducers: {
 		loadInfo: (state, action) => {
-			state.company = action.payload
-		},
-		login: (state, action) => {
 			state.company = action.payload
 		}
 	},
@@ -35,9 +47,24 @@ export const loginSlice = createSlice({
 			})
 			.addCase(loadLoginInfo.fulfilled, (state, action) => {
 				state.status = 'idle';
-				console.log(action.payload)
 				state.info = action.payload;
-			});
+			})
+			.addCase(getLoginInfo.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(getLoginInfo.fulfilled, (state, action) => {
+				state.status = 'idle';
+				state.info = action.payload;
+			})
+
+			.addCase(handleLogin.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(handleLogin.fulfilled, (state, action) => {
+				state.status = 'idle';
+				state.info = action.payload;
+			})
+		;
 
 	},
 
