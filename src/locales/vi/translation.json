@@ -4,5 +4,9 @@
   "remember_me": "Nhớ tôi",
   "username": "Tên đăng nhập",
   "password": "Mật khẩu",
-  "forgot_password": "Quên mật khẩu"
+  "forgot_password": "Quên mật khẩu",
+  "setting": "Cài đặt",
+  "notification": "Thông báo",
+  "account_info": "Tài khoản",
+  "logout": "Đăng xuất"
 }

@@ -9,7 +9,7 @@ import './index.css';
 import {makeServer} from './api/mock/server';
 
 if (process.env.NODE_ENV === "development") {
-	makeServer({environment: "development"})
+	// makeServer({environment: "development"})
 }
 const container = document.getElementById('root');
 const root = createRoot(container);

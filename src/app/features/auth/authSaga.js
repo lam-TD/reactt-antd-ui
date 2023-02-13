@@ -15,5 +15,5 @@ function* handleLogin(action) {
 }
 
 export function* watchLogin() {
-	yield takeLatest(loginStart.type, handleLogin);
+	yield takeLatest(loginStart().type, handleLogin);
 }

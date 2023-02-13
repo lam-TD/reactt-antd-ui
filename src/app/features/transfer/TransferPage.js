@@ -1,8 +1,11 @@
 import React from 'react';
 import {Breadcrumb, Layout, Menu, theme} from "antd";
+import {selectUser} from "../../../features/auth/redux/authSlice";
+import {useSelector} from "react-redux";
 
 const {Content, Sider} = Layout;
 const TransferPage = ({menuItems}) => {
+	const user = useSelector(selectUser)
 	const {
 		token: {colorBgContainer},
 	} = theme.useToken();
@@ -24,7 +27,7 @@ const TransferPage = ({menuItems}) => {
 					/>
 				</Sider>
 				<Content style={{padding: '0 24px', height: '100%'}}>
-					File transfer content
+					{123}
 				</Content>
 			</Layout>
 		</>

@@ -8,10 +8,11 @@ const getHeader = () => {
 	}
 }
 
-const clientApi = axios.create({
-	baseURL: '',
-	timeout: 10000,
-	headers: getHeader()
+const smoothFileApi = axios.create({
+	baseURL: 'http://192.168.20.53:8080/laravel',
+	headers: {
+		Accept: 'application/json',
+	}
 })
 
-export default clientApi;
+export default smoothFileApi;

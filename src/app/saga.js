@@ -1,9 +1,10 @@
 import {all} from 'redux-saga/effects';
-import loginSaga from "./features/auth/login/loginSaga";
+import {authSagas} from '../features/auth/redux';
 
-function *sayHiSaga() {
-	console.log('Hi Saga')
-}
 export default function* rootSaga() {
-	yield all([sayHiSaga(), loginSaga()]);
+	yield all([
+		authSagas.watchLogin(),
+		authSagas.watchAuthInfo(),
+		authSagas.watchLogout(),
+	]);
 }

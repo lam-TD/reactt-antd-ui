@@ -6,7 +6,9 @@ const LanguageSelect = ({onChange, initLanguage = 'en'}) => {
 	const {i18n} = useTranslation();
 	const handleChange = (value) => {
 		i18n.changeLanguage(value)
-		onChange(value)
+		if (onChange) {
+			onChange(value)
+		}
 	};
 	return <>
 		<Select
@@ -20,10 +22,6 @@ const LanguageSelect = ({onChange, initLanguage = 'en'}) => {
 				{
 					value: 'en',
 					label: 'English',
-				},
-				{
-					value: 'ja',
-					label: 'Japanese',
 				},
 				{
 					value: 'vi',

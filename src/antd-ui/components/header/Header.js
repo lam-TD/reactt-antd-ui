@@ -7,7 +7,7 @@ const Header = ({items}) => {
 	return <>
 		<AntHeader className="header">
 			<TextLogo title="Smooth File"/>
-			<Menu style={{justifyContent: 'right'}} theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items}/>
+			<Menu style={{justifyContent: 'right'}} theme="dark" mode="horizontal" items={items}/>
 		</AntHeader>
 	</>
 }

@@ -11,7 +11,20 @@ function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<ConfigProvider locale={enUS} theme="light">
+				<ConfigProvider locale={enUS} theme={{
+					token: {
+						// colorBgBase: '#1c2935'
+					},
+					components: {
+						Layout: {
+							colorBgHeader: '#7dc95e'
+						},
+						Menu: {
+							colorItemBg: '#7dc95e', // colorBgBase -3% lightness
+							colorSubItemBg: '#7dc95e' // colorBgBase -6% lightness
+						}
+					}
+				}}>
 					<BaseRoutes/>
 				</ConfigProvider>
 			</BrowserRouter>

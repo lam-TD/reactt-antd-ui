@@ -5,5 +5,9 @@
   "remember_me": "Remember me",
   "username": "Username",
   "password": "Password",
-  "forgot_password": "Forgot password"
+  "forgot_password": "Forgot password",
+  "setting": "Setting",
+  "notification": "Notification",
+  "account_info": "Account Info",
+  "logout": "Logout"
 }
