@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Menu, Modal, message} from 'antd';
+import {Menu, Modal, message, Skeleton} from 'antd';
 import {BellOutlined, LogoutOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";

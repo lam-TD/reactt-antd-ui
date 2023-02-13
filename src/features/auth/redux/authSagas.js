@@ -21,7 +21,6 @@ function* handleLogout() {
 	try {
 		yield put(logout());
 		const response = yield call(authAPI.logout);
-		const data = response.data;
 		yield put(logoutSuccess());
 		yield call(authentication.clearAccessToken);
 

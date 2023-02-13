@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Navigate, Outlet} from 'react-router-dom';
+import {Navigate, Outlet, useNavigate} from 'react-router-dom';
 import {Layout} from "antd";
 
 import * as authentication from '../../../services/authentication';
@@ -11,14 +11,16 @@ import {selectIsLoggingIn} from '../../../features/auth/redux/authSlice';
 
 const AuthLayout = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const isLoggingIn = useSelector(selectIsLoggingIn);
 	const {t} = useTranslation();
 
 	useEffect(() => {
-		console.log('isLoggingIn', isLoggingIn);
-		if (!isLoggingIn) {
+		if (!isLoggingIn || !authentication.getAccessToken()) {
 			if (authentication.getAccessToken()) {
 				dispatch(getAuthInfo())
+			} else {
+				navigate('/login')
 			}
 		}
 	}, [isLoggingIn])
