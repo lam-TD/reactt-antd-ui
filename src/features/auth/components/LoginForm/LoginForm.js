@@ -61,7 +61,7 @@ export const LoginForm = ({onSubmit, defaultData = {}, disabled, errors = [], ..
 					},
 				]}
 			>
-				<Input
+				<Input.Password
 					prefix={<LockOutlined className="site-form-item-icon"/>}
 					type="password"
 					placeholder={t('password')}

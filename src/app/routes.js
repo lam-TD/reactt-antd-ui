@@ -1,8 +1,9 @@
 import {Route, Routes} from "react-router-dom";
-import {HomePage, TransferPage} from "./features";
+import {HomePage} from "./features";
 import {AntLayout, NotFoundPage} from "../antd-ui";
 import {AuthLayout} from "../shared/components";
 import {LoginPage} from "../features/auth/pages";
+import {TransferPage} from "../features/file-transfer/pages";
 
 const BaseRoutes = () => {
 	return (
@@ -13,14 +14,10 @@ const BaseRoutes = () => {
 				<Route path="logout" element={<LoginPage/>}/>
 				<Route element={<AuthLayout/>}>
 					<Route path="dashboard" element={<div>Dashboard Page</div>}/>
+					<Route path="transfer" element={<TransferPage/>}/>
 					<Route path="settings" element={<TransferPage/>}/>
 				</Route>
 
-				<Route element={<AntLayout/>}>
-
-					<Route path="transfer" element={<TransferPage/>}/>
-					<Route path="companies" element={<TransferPage/>}/>
-				</Route>
 				<Route path="*" element={<NotFoundPage/>}></Route>
 			</Route>
 		</Routes>

@@ -25,7 +25,7 @@ function* handleLogout() {
 		yield call(authentication.clearAccessToken);
 
 	} catch (error) {
-		console.log('sage error', error)
+		console.log('sage error', error);
 		const {message} = error.response.data
 		yield put(logoutFail(message));
 	}

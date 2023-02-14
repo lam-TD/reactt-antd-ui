@@ -39,10 +39,12 @@ const DragDropAble = () => {
 	function handleDrop(e) {
 		e.preventDefault();
 		console.log(e.dataTransfer.files);
-		const a = e.dataTransfer.files.map(file => {
-			console.log(file);
-			return file;
-		})
+		const files = e.dataTransfer.files;
+		const a = [];
+		for (const file of files) {
+			console.log(file.path)
+			// a.push() += `\n${file.name}`;
+		}
 	}
 
 	function handleOnDragOver(e) {
