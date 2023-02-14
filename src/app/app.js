@@ -14,6 +14,7 @@ function App() {
 				<ConfigProvider locale={enUS} theme={{
 					token: {
 						// colorBgBase: '#1c2935'
+						fontFamily: 'Montserrat',
 					},
 					components: {
 						Layout: {
