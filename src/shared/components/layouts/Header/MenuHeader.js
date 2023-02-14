@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Menu, Modal, message, Skeleton} from 'antd';
-import {BellOutlined, LogoutOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
+import {BellOutlined, LogoutOutlined, SettingOutlined, UserOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
-import {selectIsLoadingLogout, selectLogoutError, selectUser} from "../../../../features/auth/redux/authSlice";
+import {selectLogoutError, selectUser} from "../../../../features/auth/redux/authSlice";
 import {logout} from "../../../../features/auth/redux/authActions";
 
 
@@ -20,6 +20,12 @@ const MenuHeader = (props) => {
 			label: 'Notification',
 			icon: <BellOutlined/>,
 			path: '/'
+		},
+		{
+			key: 'transfer',
+			label: 'File transfer',
+			icon: <UnorderedListOutlined />,
+			path: '/transfer'
 		},
 		{
 			key: 'setting',
