@@ -1,51 +1,55 @@
 import React, {useState} from 'react';
-import {AutoComplete, Button, Form} from "antd";
+import {Button, Form, Select, message} from "antd";
 import Hr from "../../Hr";
 
-type Props = {
-
-};
-
-const MailAutoComplete = () => {
-	const [value, setValue] = useState('');
-	const [options, setOptions] = useState([]);
-
-	const mockVal = (str, repeat = 1) => ({
-		value: str.repeat(repeat),
-	});
-	const onSearch = (searchText) => {
-		setOptions(
-			!searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-		);
+const MailAutoComplete = ({maxItems = undefined, onChange = false}) => {
+	const [selectedItems, setSelectedItems] = useState([]);
+	const [options, setOptions] = useState([{
+		value: 't-lam@plott.co.jp',
+		label: 'TRAN DUC LAM',
+	}]);
+	const handleChange = (value, option) => {
+		if (value.length > maxItems) {
+			message.error('Khong cho chon nua')
+			return false;
+		}
+		setSelectedItems(value)
+		console.log(value);
+		if (onChange) {
+			onChange(value);
+		}
 	};
-	const onSelect = (data) => {
-		console.log('onSelect', data);
-	};
-	const onChange = (data) => {
-		setValue(data);
-	};
+
 
 	return (
-		<AutoComplete
+		<Select
 			bordered={false}
-			value={value}
+			mode="tags"
+			style={{width: '100%',}}
+			onChange={handleChange}
+			tokenSeparators={[',']}
 			options={options}
-			onSelect={onSelect}
-			onSearch={onSearch}
-			onChange={onChange}
-			placeholder="control mode"
+			value={selectedItems}
 		/>
 	)
 }
 
-export const EmailInput = (props) => {
+export const EmailInput = ({value = {}, onChange, ...props}) => {
+	const handleChangeMail = (value) => {
+		triggerChange({
+			value: value
+		})
+	}
+	const triggerChange = (changedValue) => {
+		onChange?.({
+			...value,
+			...changedValue,
+		});
+	};
 	return (
-		<Form.Item
-			label={<Button style={{width: 60, fontWeight: 400}}><b>{props.label}</b></Button>}
-			style={{marginBottom: 0,}}
-		>
-			<Form.Item name={props.name} style={{marginBottom: 2}}>
-				<MailAutoComplete/>
+		<Form.Item style={{marginBottom: 0,}}>
+			<Form.Item label={<Button style={{width: 60, fontWeight: 400, display: 'block'}}><b>{props.label}</b></Button>} name={props.name} style={{marginBottom: 2}}>
+				<MailAutoComplete onChange={handleChangeMail}/>
 			</Form.Item>
 			<Form.Item noStyle>
 				<Hr/>

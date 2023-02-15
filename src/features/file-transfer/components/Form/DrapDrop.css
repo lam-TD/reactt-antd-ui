@@ -11,13 +11,17 @@
     height: 300px;
 }
 
+.drag {
+    width: 100%;
+    height: 100%;
+}
 
 .dragContent textarea {
     height: 300px;
     border: none;
     width: 100%;
 }
-.dragContent .dragSekeleton {
+.dragContent .dragSkeleton {
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -27,7 +31,7 @@
 }
 
 
-.dragContent .dragSekeleton div {
+.dragContent .dragSkeleton div {
     display: flex;
     align-items: center;
     justify-content: center;
