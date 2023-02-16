@@ -8,6 +8,7 @@ import {
 	UnorderedListOutlined
 } from "@ant-design/icons";
 import styles from './MailList.module.css';
+import {TabCard} from "./TabCard";
 
 type Props = {};
 const MailList = (props: Props) => {
@@ -91,7 +92,6 @@ const MailList = (props: Props) => {
 	};
 
 	const handleCheckboxChange = (e) => {
-		console.log(`checked = ${e.target.checked}`);
 		setRowSelection(e.target.checked);
 	}
 
@@ -106,15 +106,16 @@ const MailList = (props: Props) => {
 
 	return (
 		//
-		<Card bodyStyle={{padding: 0, boxSizing: 'border-box', overflow: 'hidden'}}
-			style={{width: '100%'}}
-			tabList={tabListNoTitle}
-			activeTabKey={activeTabKey2}
-			tabBarExtraContent={<ToolBar/>}
-			onTabChange={onTab2Change}
-		>
-			{contentListNoTitle[activeTabKey2]}
-		</Card>
+		// <Card bodyStyle={{padding: 0, boxSizing: 'border-box', overflow: 'hidden'}}
+		// 	style={{width: '100%'}}
+		// 	tabList={tabListNoTitle}
+		// 	activeTabKey={activeTabKey2}
+		// 	tabBarExtraContent={<ToolBar/>}
+		// 	onTabChange={onTab2Change}
+		// >
+		// 	{contentListNoTitle[activeTabKey2]}
+		// </Card>
+		<TabCard />
 	);
 };
 
