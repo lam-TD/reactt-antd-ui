@@ -1,0 +1,14 @@
+.settingItem {
+    display: flex;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+}
+
+.settingIcon {
+    width: 28px;
+}
+
+.settingLabel {
+    flex-grow: 1;
+}

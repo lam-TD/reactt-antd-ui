@@ -2,8 +2,11 @@ import React from 'react';
 import {Breadcrumb, Layout, Menu, theme} from "antd";
 import {selectUser} from "../../../features/auth/redux/authSlice";
 import {useSelector} from "react-redux";
-
+import {LaptopOutlined, NotificationOutlined, UserOutlined} from "@ant-design/icons";
 const {Content, Sider} = Layout;
+
+
+
 const TransferPage = ({menuItems}) => {
 	const user = useSelector(selectUser)
 	const {
