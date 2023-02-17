@@ -17,7 +17,7 @@ const TransferPage = ({menuItems}) => {
 				<Breadcrumb.Item>List</Breadcrumb.Item>
 				<Breadcrumb.Item>App</Breadcrumb.Item>
 			</Breadcrumb>
-			<Layout style={{padding: '0'}}>
+			<Layout style={{padding: '0', height: '100%'}}>
 				<Sider style={{background: 'transparent'}} width={400}>
 					<MailList/>
 				</Sider>

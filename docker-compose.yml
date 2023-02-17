@@ -1,0 +1,19 @@
+# This docker-compose.yml file is used to set up your project in the local
+# development environment *only*. It is *not* recommended to use in production server.
+#
+# See our Developer Handbook for more information:
+# http://docs.divio.com/en/latest/reference/docker-docker-compose.html
+
+services:
+  react:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ".:/app"
+    ports:
+      - 3000:3000
+    command: >
+      bash -c "cp -rfu /cache/node_modules/. /app/node_modules/  
+      && npm run start"

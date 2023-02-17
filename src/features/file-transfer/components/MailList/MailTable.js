@@ -5,9 +5,10 @@ import {DeleteOutlined} from "@ant-design/icons";
 import './MailTable.css';
 
 export const MailTable = ({isCheckAll = false}) => {
-	const [rowSelection, setRowSelection] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 	const [dataSource, setDataSource] = useState([]);
+	const [keyData, setKeyData] = useState([]);
 	const columns = [
 		{
 			title: 'Name',
@@ -32,7 +33,7 @@ export const MailTable = ({isCheckAll = false}) => {
 
 	const makeData = new Promise(resolve => {
 		const data = [];
-		for (let i = 1; i < 100; i++) {
+		for (let i = 1; i < 20; i++) {
 			data.push({
 				key: i,
 				name: 'Mike-' + i,
@@ -45,19 +46,23 @@ export const MailTable = ({isCheckAll = false}) => {
 
 		setTimeout(() => {
 			resolve(data);
-
-		}, 500);
+			setLoading(false)
+		}, 1000);
 
 	})
 
 	useEffect(() => {
-		makeData.then(data => setDataSource(data));
+		setLoading(true)
+		makeData.then(data => {
+			setDataSource(data);
+			setKeyData(data.map(item => item.key))
+		});
 	}, [])
 
 
 	const handleCheckAll = (isCheckAll) => {
 		if (isCheckAll) {
-			setSelectedRowKeys(dataSource.map(item => item.key))
+			setSelectedRowKeys(keyData)
 		} else {
 			setSelectedRowKeys([])
 		}
@@ -67,32 +72,29 @@ export const MailTable = ({isCheckAll = false}) => {
 	}, [isCheckAll])
 
 	const onSelectChange = (newSelectedRowKeys) => {
-		console.log('selectedRowKeys changed: ', newSelectedRowKeys);
 		setSelectedRowKeys(newSelectedRowKeys);
 	};
 
 	return (
-		<div>
-			<Table
-				className="table-custom"
-				size={'small'}
-				pagination={false}
-				scroll={{
-					y: 500,
-				}}
-				rowSelection={{
-					getCheckboxProps: (record) => {
-						let checkboxProps = {};
-						checkboxProps.checked = true;
-						return checkboxProps;
-					},
-					selectedRowKeys,
-					onChange: onSelectChange,
-				}}
-				showHeader={false}
-				dataSource={dataSource}
-				columns={columns}
-			/>
-		</div>
+		<Table
+			className="table-custom"
+			style={{height: '100%'}}
+			size={'small'}
+			loading={loading}
+			pagination={false}
+			// scroll={{y: 'auto',}}
+			rowSelection={{
+				getCheckboxProps: (record) => {
+					let checkboxProps = {};
+					checkboxProps.checked = true;
+					return checkboxProps;
+				},
+				selectedRowKeys,
+				onChange: onSelectChange,
+			}}
+			showHeader={false}
+			dataSource={dataSource}
+			columns={columns}
+		/>
 	);
 };

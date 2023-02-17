@@ -29,7 +29,7 @@ const AuthLayout = () => {
 		(
 			<Layout style={{height: '100%',}}>
 				<Header/>
-				<Layout.Content style={{padding: '0 50px'}}>
+				<Layout.Content style={{padding: '0 50px', height: '100%'}}>
 					<Outlet/>
 				</Layout.Content>
 				<Layout.Footer style={{textAlign: 'center'}}>Ant Design ©2023 Created by Ant UED</Layout.Footer>

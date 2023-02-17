@@ -105,16 +105,6 @@ const MailList = (props: Props) => {
 
 
 	return (
-		//
-		// <Card bodyStyle={{padding: 0, boxSizing: 'border-box', overflow: 'hidden'}}
-		// 	style={{width: '100%'}}
-		// 	tabList={tabListNoTitle}
-		// 	activeTabKey={activeTabKey2}
-		// 	tabBarExtraContent={<ToolBar/>}
-		// 	onTabChange={onTab2Change}
-		// >
-		// 	{contentListNoTitle[activeTabKey2]}
-		// </Card>
 		<TabCard />
 	);
 };

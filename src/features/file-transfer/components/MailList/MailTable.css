@@ -2,18 +2,66 @@
     height: 100%;
 }
 
-.table-custom .ant-table-body::-webkit-scrollbar-track {
+.ant-tabs {
+    height: 100%;
+}
+
+.ant-tabs-content-holder {
+    height: 100%;
+}
+
+.ant-tabs-content.ant-tabs-content-top {
+    height: 100%;
+}
+
+.ant-tabs-tabpane {
+    height: 100%;
+}
+
+.ant-spin-nested-loading {
+    height: 100%;
+}
+
+.ant-spin-container {
+    height: 100%;
+}
+
+.ant-table.ant-table-small.ant-table-fixed-header {
+    height: 100%;
+}
+
+.ant-table-container {
+    height: 100%;
+}
+
+.ant-table-body {
+    height: 100%;
+}
+
+.ant-table-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.ant-tabs-content.ant-tabs-content-top {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.ant-tabs-content::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #F5F5F5;
     border-radius: 10px;
 }
 
-.table-custom .ant-table-body::-webkit-scrollbar {
+.ant-tabs-content::-webkit-scrollbar {
     width: 10px;
     background-color: #F5F5F5;
 }
 
-.table-custom .ant-table-body::-webkit-scrollbar-thumb {
+.ant-tabs-content::-webkit-scrollbar-thumb {
     background-color: #8f8f8f;
     border-radius: 10px;
 }
+
