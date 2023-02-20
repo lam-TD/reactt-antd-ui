@@ -13,4 +13,4 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY . .
 RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 RUN chown -R node node_modules
-#USER node
+#USER node0

@@ -6,6 +6,7 @@ import {LoginPage} from "../features/auth/pages";
 import {TransferPage} from "../features/file-transfer/pages";
 import {SettingPage} from "../features/settings";
 import {BaseLayout} from "../shared/components/layouts/BaseLayout";
+import {FilePage} from "../features/files";
 
 const BaseRoutes = () => {
 	return (
@@ -17,6 +18,10 @@ const BaseRoutes = () => {
 				<Route element={<AuthLayout/>}>
 					<Route path="dashboard" element={<div>Dashboard Page</div>}/>
 					<Route path="transfer" element={<TransferPage/>}/>
+				</Route>
+
+				<Route path="files" element={<BaseLayout/>}>
+					<Route index element={<FilePage/>}/>
 				</Route>
 
 				<Route path="settings" element={<BaseLayout/>}>
