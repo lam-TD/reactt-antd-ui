@@ -10,6 +10,7 @@ import {
 	SaveOutlined,
 	SendOutlined
 } from "@ant-design/icons";
+import {MailSelect} from "./Form/MailSelect";
 
 const {Item} = Form;
 type Props = {};
@@ -58,11 +59,6 @@ const ComposeBox = (props: Props) => {
 		},
 	];
 
-	const validateField = (fieldName) => {
-		console.log(form.getFieldError(fieldName)?.[0]);
-		return form.getFieldError(fieldName)?.[0];
-	};
-
 	const getFieldErrorMessage = (field) => form.getFieldError(field);
 
 	const MyInput = ({value, onChange, ...props}) => {
@@ -73,7 +69,8 @@ const ComposeBox = (props: Props) => {
 				<div className="field">
 					<Button className="compose-item-label">{props?.label}</Button>
 					<div className={'hr' + (error ? ' error' : '')}>
-						<Input bordered={false} value={value} onChange={onChange} rootClassName="input"/>
+						<MailSelect></MailSelect>
+						{/*<Input bordered={false} value={value} onChange={onChange} rootClassName="input"/>*/}
 					</div>
 				</div>
 				{error && <div className="error-message">{props?.error()[0]}</div>}
@@ -98,35 +95,33 @@ const ComposeBox = (props: Props) => {
 				<MyInput label={'To'} error={() => getFieldErrorMessage('to')}/>
 			</Item>
 
-			<Item
-				noStyle
-				label="Cc"
-				name="cc"
-				initialValue={''}
-				rules={[
-					{
-						required: true,
-						message: 'Please input your ccc!',
-					},
-				]}
-			>
-				<MyInput label="Cc" error={() => getFieldErrorMessage('cc')}/>
-			</Item>
+			{/*<Item*/}
+			{/*	noStyle*/}
+			{/*	name="cc"*/}
+			{/*	initialValue={''}*/}
+			{/*	rules={[*/}
+			{/*		{*/}
+			{/*			required: true,*/}
+			{/*			message: 'Please input your ccc!',*/}
+			{/*		},*/}
+			{/*	]}*/}
+			{/*>*/}
+			{/*	<MyInput label="Cc" error={() => getFieldErrorMessage('cc')}/>*/}
+			{/*</Item>*/}
 
-			<Item
-				noStyle
-				label="Bcc"
-				name="bcc"
-				initialValue={''}
-				rules={[
-					{
-						required: true,
-						message: 'Please input your bcc!',
-					},
-				]}
-			>
-				<MyInput label="Bcc" error={() => getFieldErrorMessage('bcc')}/>
-			</Item>
+			{/*<Item*/}
+			{/*	noStyle*/}
+			{/*	name="bcc"*/}
+			{/*	initialValue={''}*/}
+			{/*	rules={[*/}
+			{/*		{*/}
+			{/*			required: true,*/}
+			{/*			message: 'Please input your bcc!',*/}
+			{/*		},*/}
+			{/*	]}*/}
+			{/*>*/}
+			{/*	<MyInput label="Bcc" error={() => getFieldErrorMessage('bcc')}/>*/}
+			{/*</Item>*/}
 
 			<Item name="subject" noStyle className="compose-item" placehoder="mail subject">
 				<div className="compose-item">
