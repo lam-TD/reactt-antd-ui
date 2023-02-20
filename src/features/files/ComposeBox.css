@@ -1,0 +1,136 @@
+.compose-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+}
+
+.compose-item {
+    display: flex;
+    width: 100%;
+    padding-top: 5px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.compose-item:first-child {
+    padding-top: 10px !important;
+}
+
+
+.input {
+    padding-left: 0;
+}
+
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+.ps-0 {
+    padding-left: 0 !important;
+}
+
+.ps-10 {
+    padding-left: 10px;
+}
+
+.pe-10 {
+    padding-right: 10px;
+}
+
+.pt-10 {
+    padding-top: 10px;
+}
+
+.pb-10 {
+    padding-bottom: 10px !important;
+}
+
+.hr {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    border-bottom: 1px solid #f0f0f0;
+    box-sizing: border-box;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.compose-item-label {
+    width: 62px;
+    font-weight: bold;
+}
+
+.btn-setting-wrapper {
+    /*height: 100px;*/
+}
+
+.btn-setting-list {
+    flex-grow: 1;
+}
+
+.btn-submit {
+    width: 150px;
+    justify-content: start;
+    margin-right: 5px !important;
+}
+
+.file-attachment-list {
+
+}
+
+.file-attachment-list-item {
+    padding: 0 !important;
+    width: 100%;
+    border-block-end: 1px solid #d9d9d9 !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-radius: 6px;
+    /*padding-bottom: 5px !important;*/
+    margin-bottom: 0 !important;
+}
+
+.file-attachment-list-item--meta {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+}
+
+.file-attachment-list-item--meta-avatar {
+    /*align-items: center !important;*/
+}
+
+.file-attachment-list-item--meta > .ant-list-item-meta-avatar {
+    margin-inline-end: 5px !important;
+    margin-inline-start: 5px !important;
+}
+
+.error {
+    border-bottom: 1px solid #ff4d4f !important;
+}
+
+.error-message {
+    display: flex;
+    width: 100%;
+    color: #ff4d4f;
+}
+
+.field {
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+
+.compose-item textarea {
+    padding-left: 0;
+    padding-right: 0;
+}
