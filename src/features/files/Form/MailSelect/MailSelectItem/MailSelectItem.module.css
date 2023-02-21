@@ -1,0 +1,30 @@
+.emailItem {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.emailItemIcon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5rem;
+}
+
+.emailItemText {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.emailItemText span, small {
+    width: 100%;
+}
+
+.emailItemTextTitle {
+    font-weight: bold;
+}
+
+.emailItemTextSub {
+
+}

@@ -19,7 +19,8 @@ const ComposeBox = (props: Props) => {
 	const [form] = Form.useForm();
 	const formProps = {
 		initialValues: {
-			subject: "Hello subject"
+			subject: "Hello subject",
+			to: ['lam@gmail.com']
 		},
 		onFinish: (values) => {
 			console.log(values)
@@ -63,19 +64,31 @@ const ComposeBox = (props: Props) => {
 
 	const MyInput = ({value, onChange, ...props}) => {
 		const error = props?.['aria-invalid']
-		console.log();
 		return (
 			<div className="compose-item ps-10" style={{flexDirection: 'column', paddingTop: 0}}>
 				<div className="field">
 					<Button className="compose-item-label">{props?.label}</Button>
 					<div className={'hr' + (error ? ' error' : '')}>
-						<MailSelect></MailSelect>
-						{/*<Input bordered={false} value={value} onChange={onChange} rootClassName="input"/>*/}
+						<MailSelect style={{width: '100%'}} onChange={onChange} value={value}></MailSelect>
 					</div>
 				</div>
 				{error && <div className="error-message">{props?.error()[0]}</div>}
 			</div>
 		)
+	}
+
+	const InputSubject = ({value, onChange, ...props}) => {
+		const error = props?.['aria-invalid'];
+
+		return <div className="compose-item">
+			<div className="" style={{width: '100%'}}>
+				<div className={'hr' + (error ? ' error' : '')}>
+					<Input value={value} onChange={onChange} placeholder="Add a subject" bordered={false}
+								 rootClassName="ps-0 pt-0 pb-10"/>
+				</div>
+				{error && <div className="error-message ps-10">{props?.error()[0]}</div>}
+			</div>
+		</div>
 	}
 
 	return (
@@ -84,7 +97,6 @@ const ComposeBox = (props: Props) => {
 				noStyle
 				label="to"
 				name="to"
-				initialValue={'3123213213123213'}
 				rules={[
 					{
 						required: true,
@@ -95,40 +107,41 @@ const ComposeBox = (props: Props) => {
 				<MyInput label={'To'} error={() => getFieldErrorMessage('to')}/>
 			</Item>
 
-			{/*<Item*/}
-			{/*	noStyle*/}
-			{/*	name="cc"*/}
-			{/*	initialValue={''}*/}
-			{/*	rules={[*/}
-			{/*		{*/}
-			{/*			required: true,*/}
-			{/*			message: 'Please input your ccc!',*/}
-			{/*		},*/}
-			{/*	]}*/}
-			{/*>*/}
-			{/*	<MyInput label="Cc" error={() => getFieldErrorMessage('cc')}/>*/}
-			{/*</Item>*/}
+			<Item
+				noStyle
+				name="cc"
+				rules={[
+					{
+						required: true,
+						message: 'Please input your ccc!',
+					},
+				]}
+			>
+				<MyInput label="Cc" error={() => getFieldErrorMessage('cc')}/>
+			</Item>
 
-			{/*<Item*/}
-			{/*	noStyle*/}
-			{/*	name="bcc"*/}
-			{/*	initialValue={''}*/}
-			{/*	rules={[*/}
-			{/*		{*/}
-			{/*			required: true,*/}
-			{/*			message: 'Please input your bcc!',*/}
-			{/*		},*/}
-			{/*	]}*/}
-			{/*>*/}
-			{/*	<MyInput label="Bcc" error={() => getFieldErrorMessage('bcc')}/>*/}
-			{/*</Item>*/}
+			<Item
+				noStyle
+				name="bcc"
+				rules={[
+					{
+						required: true,
+						message: 'Please input your bcc!',
+					},
+				]}
+			>
+				<MyInput label="Bcc" error={() => getFieldErrorMessage('bcc')}/>
+			</Item>
 
-			<Item name="subject" noStyle className="compose-item" placehoder="mail subject">
-				<div className="compose-item">
-					<div className="hr">
-						<Input placeholder="Add a subject" bordered={false} rootClassName="ps-0 pt-0 pb-10"/>
-					</div>
-				</div>
+			<Item name="subject" noStyle className="compose-item"
+						rules={[
+							{
+								required: true,
+								message: 'Please input your subject!',
+							},
+						]}
+			>
+				<InputSubject label="Subject" error={() => getFieldErrorMessage('subject')}></InputSubject>
 			</Item>
 
 			<Item noStyle>
