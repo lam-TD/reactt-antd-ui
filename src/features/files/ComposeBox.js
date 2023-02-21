@@ -1,31 +1,59 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Avatar, Button, Card, Col, Form, Grid, Input, List, Row, Space, Tooltip} from "antd";
 import './ComposeBox.css';
 import {
 	EnvironmentOutlined,
-	EyeInvisibleOutlined,
-	FileOutlined, FileSyncOutlined,
 	LockOutlined,
 	PaperClipOutlined, RedoOutlined,
 	SaveOutlined,
 	SendOutlined
 } from "@ant-design/icons";
 import {MailSelect} from "./Form/MailSelect";
+import MailBody from "./Form/MailBody";
 
 const {Item} = Form;
-type Props = {};
 
-const ComposeBox = (props: Props) => {
+const ComposeBoxValidator = (fields) => {
+	const body = (_, value) => {
+
+	}
+}
+
+const ComposeBox = () => {
 	const [form] = Form.useForm();
+
 	const formProps = {
 		initialValues: {
 			subject: "Hello subject",
-			to: ['lam@gmail.com']
+			to: ['lam@gmail.com'],
+			cc: [],
+			bcc: [],
+			body: {
+				text: '',
+				files: []
+			},
+			files: [],
 		},
 		onFinish: (values) => {
 			console.log(values)
 		}
 	}
+
+	const checkMailBody = (_, value) => {
+		console.log('checkMailBody', value);
+		const {text, files} = value;
+		//check text
+		if (text.trim().length <= 0) {
+			return Promise.reject(new Error('Please enter the Body!'));
+		}
+
+		// check file
+		if (files.length >= 3) {
+			return Promise.reject(new Error('Max file is 2!'));
+		}
+
+		return Promise.resolve();
+	};
 
 	const settingButtonItems = [
 		{
@@ -112,7 +140,7 @@ const ComposeBox = (props: Props) => {
 				name="cc"
 				rules={[
 					{
-						required: true,
+						required: false,
 						message: 'Please input your ccc!',
 					},
 				]}
@@ -125,7 +153,7 @@ const ComposeBox = (props: Props) => {
 				name="bcc"
 				rules={[
 					{
-						required: true,
+						required: false,
 						message: 'Please input your bcc!',
 					},
 				]}
@@ -133,94 +161,29 @@ const ComposeBox = (props: Props) => {
 				<MyInput label="Bcc" error={() => getFieldErrorMessage('bcc')}/>
 			</Item>
 
-			<Item name="subject" noStyle className="compose-item"
-						rules={[
-							{
-								required: true,
-								message: 'Please input your subject!',
-							},
-						]}
+			<Item
+				name="subject"
+				noStyle
+				className="compose-item"
+				rules={[
+					{
+						required: false,
+						message: 'Please input your subject!',
+					},
+				]}
 			>
 				<InputSubject label="Subject" error={() => getFieldErrorMessage('subject')}></InputSubject>
 			</Item>
 
-			<Item noStyle>
-				<div className="compose-item ps-10 pe-10">
-					<List
-						itemLayout="horizontal"
-						style={{paddingTop: 5, width: '100%'}}
-						grid={{
-							gutter: 8,
-							xs: 1,
-							sm: 2,
-							md: 4,
-							lg: 4,
-							xl: 4,
-							xxl: 6,
-						}}
-						dataSource={[
-							{
-								name: 'file1.doc',
-								url: 'https://example.com/file1.doc',
-								type: 'doc',
-							},
-							{
-								name: 'file2sdasd.pdf',
-								url: 'https://example.com/file2.pdf',
-								type: 'pdf',
-							},
-							{
-								name: 'file3.jpg',
-								url: 'https://example.com/file3.jpg',
-								type: 'jpg',
-							},
-							{
-								name: 'file4.jpg',
-								url: 'https://example.com/file3.jpg',
-								type: 'jpg',
-							},
-						]}
-						renderItem={(item) => (
-							<List.Item
-								key={item.name}
-								className="file-attachment-list-item"
-							>
-								<List.Item.Meta
-									avatar={
-										<Avatar
-											className="file-attachment-list-item--meta-avatar"
-											icon={<FileOutlined/>}
-											// style={{height: '100%'}}
-										/>
-									}
-									title={item.name}
-									description={`35KB`}
-									className="file-attachment-list-item--meta"
-								/>
-							</List.Item>
-						)}
-					/>
-				</div>
-			</Item>
-
-			<Item noStyle>
-				<div className="compose-item">
-					<div className="hr"></div>
-				</div>
-			</Item>
-
-			<Item noStyle name="body">
-				<div className="compose-item flex-grow-1">
-					<div className="hr">
-						<Input.TextArea
-							bordered={false}
-							maxLength={520}
-							showCount
-							placeholder="Enter body"
-							style={{width: '100%', padding: '0 0 0 0'}}
-						/>
-					</div>
-				</div>
+			<Item
+				noStyle
+				name="body"
+				rules={[
+					{
+						validator: checkMailBody,
+					},
+				]}>
+				<MailBody error={() => getFieldErrorMessage('body')}/>
 			</Item>
 
 			<Item noStyle>

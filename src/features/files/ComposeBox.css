@@ -103,6 +103,9 @@
     align-items: center !important;
     justify-content: center !important;
     width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .file-attachment-list-item--meta-avatar {
