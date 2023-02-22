@@ -1,0 +1,183 @@
+{
+  "available_variables": {
+    "title": "available_variables",
+    "data": {
+      "[NUMBER]": "##[NUMBER]##",
+      "[URL]": "##[URL]##",
+      "[LOGIN]": "##[LOGIN]##",
+      "[PASS]": "##[PASS]##",
+      "[TO_NAME]": "##[TO_NAME]##",
+      "[TO_MAIL]": "##[TO_MAIL]##",
+      "[CC_NAME]": "##[CC_NAME]##",
+      "[CC_MAIL]": "##[CC_MAIL]##",
+      "[FILENAME]": "##[FILENAME]##",
+      "[COMMENT]": "##[COMMENT]##",
+      "[DEADLINE]": "##[DEADLINE]##",
+      "[DL_COUNT]": "##[DL_COUNT]##",
+      "[RES_SIZE]": "##[RES_SIZE]##",
+      "[RES_COUNT]": "##[RES_COUNT]##",
+      "[COMPANY]": "##[COMPANY]##",
+      "[NAME]": "##[NAME]##",
+      "[MAIL]": "##[MAIL]##"
+    }
+  },
+  "mail_subject": {
+    "title": "mail_subject",
+    "data": "[Smooth File] A file has been uploaded. [ID:[NUMBER]]"
+  },
+  "mail_body": {
+    "title": "mail_body",
+    "data": "Access the following URL to download the file.\r\n\r\nURL: [URL]\r\nLogin ID: [LOGIN]\r\nPassword: [PASS]\r\n\r\nValid period: [DEADLINE]\r\nNumbers can be downloaded: [DL_COUNT]\r\nNumber can be replied: [RES_COUNT]\r\nSize of file that can be replied: [RES_SIZE] \r\n\r\nFile name: [FILENAME]\r\n\r\n---------------------------------------\r\n[COMPANY] [NAME]\r\nEmail: [MAIL]"
+  },
+  "mail_type": {
+    "bcc": "BCC",
+    "mail_subject": "##SUBJECT##"
+  },
+  "config": {
+    "default_options": {
+      "title": "",
+      "data": {
+        "reply_flag": {
+          "title": "Reply",
+          "input_name": "reply_flag",
+          "input_type": "radio",
+          "default_value": "1",
+          "data": {
+            "1": "NECESSARY",
+            "0": "UNNECESSARY"
+          },
+          "note": " If you select Reply \"\"Required\"\" while sending File is not selected and sent, you can upload Reply File from the URL notified to the destination.\n· If you select Reply \"\"Required\"\" while sending File is selected and sent, you can download File and upload File from the URL notified to the destination.\n· When sending with reply \"\"unnecessary\"\" selected while sending File is selected, you can download only the sending File from the URL notified to the destination and the reply form will not be displayed.\n· You can not select and send reply \"\"unnecessary\"\" while sending File is not selected."
+        },
+        "download_flag": {
+          "title": "Download",
+          "input_name": "download_flag",
+          "input_type": "radio",
+          "default_value": "1",
+          "data": {
+            "1": "ALLOWED",
+            "0": "NOT_ALLOWED"
+          }
+        },
+        "office_edit_flag": {
+          "title": "Office Online",
+          "input_name": "office_edit_flag",
+          "input_type": "radio",
+          "default_value": "1",
+          "data": {
+            "1": "PERMIT_EDIT",
+            "0": "PERMIT_VIEW_ONLY"
+          }
+        },
+        "download_notification": {
+          "title": "Download notifications",
+          "input_name": "download_notification",
+          "input_type": "radio",
+          "default_value": "0",
+          "data": {
+            "1": "NOTIFY",
+            "0": "DO_NOT_NOTIFY"
+          }
+        }
+      }
+    },
+    "setting": {
+      "title": "Setting of details",
+      "data": {
+        "expiration_days": {
+          "default_value": "45",
+          "input_name": "expiration_days",
+          "input_type": "text",
+          "title": "File transfer valid period",
+          "note": "Days *Upper limit 45 days"
+        },
+        "download_remainder": {
+          "default_value": "15",
+          "input_name": "download_remainder",
+          "input_type": "text",
+          "title": "DOWNLOAD_REMAINDER",
+          "note": "DOWNLOAD_REMAINDER_NOTE"
+        },
+        "reply_max_size": {
+          "default_value": "75",
+          "input_name": "reply_max_size",
+          "input_type": "text",
+          "title": "REPLY_MAX_SIZE",
+          "note": "REPLY_MAX_SIZE_NOTE"
+        },
+        "reply_remainder": {
+          "default_value": "6",
+          "input_name": "reply_remainder",
+          "input_type": "text",
+          "title": "REPLY_REMAINDER",
+          "note": "REPLY_REMAINDER_NOTE"
+        },
+        "mail_password_type": {
+          "default_value": "1",
+          "input_name": "mail_password_type",
+          "input_type": "radio",
+          "title": "MAIL_PASSWORD_TYPE",
+          "data": {
+            "1": {
+              "mail_password_time": {
+                "title": "MAIL_PASSWORD_TYPE_1",
+                "default_value": "6",
+                "input_name": "mail_password_time",
+                "input_type": "text"
+              }
+            },
+            "2": "MAIL_PASSWORD_TYPE_2",
+            "3": "MAIL_PASSWORD_TYPE_3",
+            "4": "MAIL_PASSWORD_TYPE_4",
+            "5": {
+              "file_transfer_password": {
+                "title": "MAIL_PASSWORD_TYPE_5",
+                "input_name": "file_transfer_password",
+                "default_value": "default_password",
+                "input_type": "text"
+              }
+            },
+            "6": "MAIL_PASSWORD_TYPE_6"
+          }
+        },
+        "same_password": {
+          "parent": {
+            "key": "mail_password_type",
+            "value": "4"
+          },
+          "input_type": "radio",
+          "title": "SAME_PASSWORD",
+          "input_name": "same_password",
+          "default_value": "0",
+          "data": {
+            "1": "USE_A_COMMON_PASSWORD",
+            "0": "DO_NOT_USE_A_COMMON_PASSWORD"
+          }
+        },
+        "auto_id_auth": {
+          "input_type": "radio",
+          "input_name": "auto_id_auth",
+          "default_value": "1",
+          "title": "AUTO_ID_AUTH",
+          "data": {
+            "1": "USE",
+            "0": "DO_NOT_USE"
+          }
+        },
+        "mail_language": {
+          "input_type": "select",
+          "default_value": "02",
+          "input_name": "mail_language",
+          "title": "MAIL_LANGUAGE",
+          "data": {
+            "01": "JAPANESE",
+            "02": "ENGLISH",
+            "03": "CHINESE",
+            "04": "KOREAN",
+            "05": "VIETNAMESE"
+          }
+        }
+      }
+    }
+  },
+  "input_mode": 1
+}

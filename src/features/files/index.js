@@ -7,11 +7,13 @@ import {MailList} from "../file-transfer/components";
 
 import './files.css';
 import ComposeBox from "./ComposeBox";
+import useDocumentTitle from "../../shared/useDocumentTitle";
 
-type Props = {
+type Props = {};
+const FilePage = (props: Props) => {
 
-};
-export const FilePage = (props: Props) => {
+	useDocumentTitle('SF | File transfer');
+
 	return (
 		<Layout className="content">
 			<Sider
@@ -24,9 +26,7 @@ export const FilePage = (props: Props) => {
 			</Sider>
 			<Layout className="content-right" style={{padding: '0',}}>
 				<Breadcrumb style={{margin: '16px 0',}}>
-					<Breadcrumb.Item>Home</Breadcrumb.Item>
-					<Breadcrumb.Item>List</Breadcrumb.Item>
-					<Breadcrumb.Item>App</Breadcrumb.Item>
+					<Breadcrumb.Item>New File Transfer Registration</Breadcrumb.Item>
 				</Breadcrumb>
 				<Content className="wrapper">
 					<ComposeBox/>
@@ -35,3 +35,4 @@ export const FilePage = (props: Props) => {
 		</Layout>
 	);
 };
+export default FilePage;

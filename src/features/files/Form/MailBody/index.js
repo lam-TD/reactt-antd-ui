@@ -1,8 +1,8 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Avatar, Input, Form, List, Button} from "antd";
+import Icon, {CloudUploadOutlined, DeleteOutlined, FileOutlined} from "@ant-design/icons";
 
 import './MailBody.css';
-import Icon, {CloseOutlined, CloudUploadOutlined, DeleteOutlined, FileOutlined} from "@ant-design/icons";
 import {humanFileSize} from "../../../../shared/HumanReable";
 
 const {Item} = Form;
@@ -12,8 +12,12 @@ const MailBody = ({value, onChange, ...props}) => {
 	const [files, setFiles] = useState(value.files);
 	const inputRef = useRef();
 
-	const isError = props?.['aria-invalid']
-	console.log('isError', isError)
+	const isError = props?.['aria-invalid'];
+
+	useEffect(() => {
+		setFiles(props.attachments)
+	},[props.attachments])
+
 	const divDrop = () => {
 		const div = inputRef.current;
 		const divDrop = div.querySelector('.drop');

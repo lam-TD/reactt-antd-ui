@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Avatar, Button, Card, Col, Form, Grid, Input, List, Row, Space, Tooltip} from "antd";
+import {Avatar, Badge, Button, Card, Col, Form, Grid, Input, List, Row, Space, Tooltip, Upload} from "antd";
 import './ComposeBox.css';
 import {
 	EnvironmentOutlined,
@@ -10,37 +10,47 @@ import {
 } from "@ant-design/icons";
 import {MailSelect} from "./Form/MailSelect";
 import MailBody from "./Form/MailBody";
+import SettingModal from "./SettingModal";
+import templateConfig from './template.json';
 
 const {Item} = Form;
 
-const ComposeBoxValidator = (fields) => {
-	const body = (_, value) => {
-
-	}
-}
-
 const ComposeBox = () => {
 	const [form] = Form.useForm();
+	const [isOpenSettingModal, setIsOpenSettingModal] = useState(false);
+	const [attachments, setAttachment] = useState([]);
 
 	const formProps = {
 		initialValues: {
-			subject: "Hello subject",
+			subject: templateConfig.mail_subject.data,
 			to: ['lam@gmail.com'],
 			cc: [],
 			bcc: [],
 			body: {
-				text: '',
+				text: templateConfig.mail_body.data,
 				files: []
 			},
 			files: [],
+			setting: {
+				limit_country: [],
+				password_setting: []
+			}
 		},
 		onFinish: (values) => {
 			console.log(values)
 		}
 	}
 
+	const handleSettingModalCancel = () => {
+		setIsOpenSettingModal(false);
+	}
+	const handleSettingModalOk = (values) => {
+		setIsOpenSettingModal(false);
+		form.setFieldValue('setting', values)
+		console.log('values', values)
+	}
+
 	const checkMailBody = (_, value) => {
-		console.log('checkMailBody', value);
 		const {text, files} = value;
 		//check text
 		if (text.trim().length <= 0) {
@@ -48,7 +58,7 @@ const ComposeBox = () => {
 		}
 
 		// check file
-		if (files.length >= 3) {
+		if (files.length >= 10) {
 			return Promise.reject(new Error('Max file is 2!'));
 		}
 
@@ -57,34 +67,30 @@ const ComposeBox = () => {
 
 	const settingButtonItems = [
 		{
-			label: 'File attachment',
-			icon: <PaperClipOutlined/>,
-			style: {width: '100%'},
-			onClick: () => console.log('Hello...')
-		},
-		{
 			label: 'Save draft',
 			icon: <SaveOutlined/>,
-			style: {width: '100%'},
-			onClick: () => console.log('Hello...')
+			type: 'text',
+			onClick: () => setIsOpenSettingModal(true)
 		},
 		{
 			label: 'File reply',
 			icon: <RedoOutlined/>,
-			style: {width: '100%'},
-			onClick: () => console.log('Hello...')
+			type: 'text',
+			onClick: () => setIsOpenSettingModal(true)
 		},
 		{
 			label: 'Limit country',
 			icon: <EnvironmentOutlined/>,
-			style: {width: '100%'},
-			onClick: () => console.log('Hello...')
+			type: 'text',
+			onClick: () => {
+				setIsOpenSettingModal(true)
+			}
 		},
 		{
 			label: 'Password setting',
 			icon: <LockOutlined/>,
-			style: {width: '100%'},
-			onClick: () => console.log('Hello...')
+			type: 'text',
+			onClick: () => setIsOpenSettingModal(true)
 		},
 	];
 
@@ -118,6 +124,24 @@ const ComposeBox = () => {
 			</div>
 		</div>
 	}
+
+	const handleSelectAttachment = () => {
+
+	}
+
+	const uploadProps = {
+		showUploadList: false,
+		multiple: true,
+		beforeUpload: (file) => {
+			// console.log(file);
+			const body = form.getFieldValue('body');
+			const oldFiles = body.files;
+			const newFiles = [...oldFiles, file]
+			form.setFieldValue('body', {text: body.text, files: newFiles});
+			setAttachment(newFiles)
+			return false;
+		},
+	};
 
 	return (
 		<Form form={form} {...formProps} className="compose-wrapper">
@@ -183,38 +207,56 @@ const ComposeBox = () => {
 						validator: checkMailBody,
 					},
 				]}>
-				<MailBody error={() => getFieldErrorMessage('body')}/>
+				<MailBody attachments={attachments} error={() => getFieldErrorMessage('body')}/>
 			</Item>
 
-			<Item noStyle>
+			<Item noStyle name="setting">
 				<div className="compose-item btn-setting-wrapper ps-10 pe-10">
 					<div className="btn-setting-list">
-						<Row gutter={[8, 8]}>
-							<Col xs={24} sm={8} md={8} lg={8} xl={6} xxl={4}>
-								<Button
-									icon={<SendOutlined/>}
-									type="primary"
-									htmlType="submit"
-									style={{width: '100%'}}
-								>Send</Button>
-							</Col>
+						<Space>
+							<Button
+								icon={<SendOutlined/>}
+								type="primary"
+								htmlType="submit"
+								style={{width: '100%'}}
+							>
+								Send
+							</Button>
+
+							<Button type="default" style={{width: '100%'}}>
+								Discard
+							</Button>
+
+							<Upload {...uploadProps}>
+								<Tooltip title="File attachment">
+									<Button type="text" icon={<PaperClipOutlined/>}></Button>
+								</Tooltip>
+							</Upload>
+
 							{settingButtonItems.map((button, key) => {
 								return (
-									<Col key={key} xs={24} sm={8} md={8} lg={8} xl={6} xxl={4}>
+									<Tooltip key={key} title={button.label}>
 										<Button
 											onClick={button.onClick}
 											type={button.type ?? 'default'}
 											style={button?.style}
 											icon={button?.icon}
 										>
-											{button.label}
 										</Button>
-									</Col>
+									</Tooltip>
 								)
 							})}
-						</Row>
+						</Space>
 					</div>
 				</div>
+			</Item>
+
+			<Item noStyle>
+				<SettingModal
+					open={isOpenSettingModal}
+					handleOk={handleSettingModalOk}
+					handleCancel={handleSettingModalCancel}
+				/>
 			</Item>
 		</Form>
 	);

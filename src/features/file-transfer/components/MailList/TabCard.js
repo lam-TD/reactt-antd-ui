@@ -63,7 +63,7 @@ export const TabCard = (props: Props) => {
 	}, [position]);
 
 	return (
-		<Card style={{height: '100%'}} bodyStyle={{padding: 10, height: '100%'}}>
+		<Card style={{height: '100%', borderRadius: 0}} bodyStyle={{padding: 10, height: '100%'}}>
 			<Tabs tabBarExtraContent={slot} items={items}/>
 		</Card>
 	);
