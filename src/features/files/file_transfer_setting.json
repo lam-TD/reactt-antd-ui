@@ -1,0 +1,494 @@
+{
+  "automatic_deletion_setting" : {
+    "title" : "Automatic deletion setting",
+    "data"  : {
+      "automatic_deletion" : {
+        "title" : "Automatic deletion",
+        "default_value" : "[deleteType]",
+        "input_type": "radio",
+        "name" : "delete_type",
+        "data" : {
+          "1" : "Do not use",
+          "2" : "Delete downloaded files only.",
+          "3" : "Delete all File transfer"
+        },
+        "constraint" : {
+          "title" : "Delete days after end of valid period",
+          "input_type" : "text",
+          "default_value" : "[deleteDate]",
+          "parent" : ["1"],
+          "name" : "delete_date"
+        }
+      },
+      "list_deleted_data" : {
+        "title" : "List deleted data",
+        "default_value" : "[deletedDisplayFlag]",
+        "input_type": "radio",
+        "name" : "deleted_display_flag",
+        "data" : {
+          "1" : "Show",
+          "0" : "Do not show"
+        }
+      },
+      "deletion_of_unapproved_file" : {
+        "title" : "Deletion of unapproved File",
+        "default_value" : "[unapprovedFileDeleteType]",
+        "input_type": "radio",
+        "name" : "unapproved_file_delete_type",
+        "data" : {
+          "0" : "DO_NOT_DELETE",
+          "1" : "IMMEDIATE_DELETION"
+        }
+      }
+    }
+  },
+  "download_url_setting" : {
+    "title" : "Download URL setting",
+    "data"  : {
+      "url_type" : {
+        "title" : "URL type",
+        "default_value" : "[urlType]",
+        "input_type" : "select",
+        "name" : "url_type",
+        "data" : {
+          "1" : "MANUAL",
+          "2" : "AUTO",
+          "3" : "USE_ONLY_GLOBAL_URL",
+          "4" : "IDENTIFY_BY_DOMAIN"
+        }
+      },
+      "manual_input_global_url" : {
+        "title" : "Manual input – Global URL",
+        "default_value" : "[globalUrl]",
+        "input_type" : "text",
+        "title_input" : "*https://example.co.jp/",
+        "name" : "global_url",
+        "parent": {
+          "key": "url_type",
+          "value": ["2"]
+        }
+      },
+      "manual_input_local_url" : {
+        "title" : "Manual input – Local URL",
+        "default_value" : "[localUrl]",
+        "input_type" : "text",
+        "title_input" : "*https://example.co.jp/",
+        "name" : "local_url",
+        "parent": {
+          "key": "url_type",
+          "value": ["2","3"]
+        }
+      },
+      "domain_for_identifying_use_of_local_url" : {
+        "title" : "Domain for identifying use of local URL",
+        "default_value" : "[domain]",
+        "input_type" : "text",
+        "title_input" : "*example.co.jp",
+        "name" : "domain",
+        "parent": {
+          "key": "url_type",
+          "value": ["1","2","3"]
+        }
+      }
+    }
+  },
+  "password_notification_setting" : {
+    "title" : "Password notification setting",
+    "data" : {
+      "password_notification_method" : {
+        "title" : "Password notification method",
+        "input_type" : "checkbox",
+        "data" : {
+          "pass_mail_delay_flag": {
+            "title" : "Divide from ID",
+            "name" : "pass_mail_delay_flag",
+            "default_value" : "[passMailDelayFlag]",
+            "constraint" : {
+              "title" : "minutes later.",
+              "input_type" : "text",
+              "default_value" : "[passMailInterval]",
+              "parent" : ["0"],
+              "name" : "pass_mail_interval"
+            }
+          },
+          "pass_mail_once_flag" : {
+            "title" : " Notify together with ID.",
+            "name" : "pass_mail_once_flag",
+            "default_value" : "[passMailOnceFlag]"
+          },
+          "pass_mail_url_flag" : {
+            "title" : "Notify with URL for automatic authentication of ID/password",
+            "name" : "pass_mail_url_flag",
+            "default_value" : "[passMailUrlFlag]"
+          },
+          "pass_mail_myself_and_display_flag" : {
+            "title" : "Notifies the password to the sender and displays it on the list of file transfer information",
+            "name" : "pass_mail_myself_and_display_flag",
+            "default_value" : "[passMailMyselfAndDisplayFlag]"
+          },
+          "pass_mail_set_any_password" : {
+            "title" : "Set any password",
+            "name" : "pass_mail_set_any_password",
+            "default_value" : "[passMailSetAnyPassword]",
+            "constraint" : {
+              "title" : "without notification",
+              "input_type" : "text",
+              "default_value" : "[passMailAnyPassword]",
+              "parent" : ["0"],
+              "name" : "pass_mail_any_password"
+            }
+          },
+          "pass_mail_recipient_issued_flag" : {
+            "title" : "Issued by the recipient with terminal / browser restrictions",
+            "name" : "pass_mail_recipient_issued_flag",
+            "default_value" : "[passMailRecipientIssuedFlag]"
+          }
+        }
+      },
+      "password_notification_method_default_value": {
+        "default_value": "[mailPasswordTypeDefault]",
+        "input_type": "radio",
+        "title" : "Password notification method – Default value",
+        "name" : "mail_password_type_default",
+        "data": {
+          "1": "MAIL_PASSWORD_TYPE_1",
+          "2": "MAIL_PASSWORD_TYPE_2",
+          "3": "MAIL_PASSWORD_TYPE_3",
+          "4": "MAIL_PASSWORD_TYPE_4",
+          "5": "MAIL_PASSWORD_TYPE_5",
+          "6": "MAIL_PASSWORD_TYPE_6"
+        }
+      },
+      "number_of_password" : {
+        "title" : "Number of password characters",
+        "default_value" : "[passwordLowest]",
+        "input_type" : "text",
+        "title_input" : "character",
+        "name" : "password_lowest"
+      },
+      "character_used_for_password" : {
+        "title" : "Character used for password",
+        "input_type" : "checkbox",
+        "data" : {
+          "password_lowercase_flag" : {
+            "title" : "Alphabet [a-z]",
+            "default_value" : "[passwordLowercaseFlag]",
+            "name" : "password_lowercase_flag"
+          },
+          "password_uppercase_flag" : {
+            "title" : "Alphabet [A-Z]",
+            "default_value" : "[passwordUppercaseFlag]",
+            "name" : "password_uppercase_flag"
+          },
+          "password_number_flag" : {
+            "title" : "Numeral [0-9]",
+            "default_value" : "[passwordNumberFlag]",
+            "name" : "password_number_flag"
+          },
+          "password_symbol_flag" : {
+            "title" : "Symbol [_.\\-@!#%&$]",
+            "default_value" : "[passwordSymbolFlag]",
+            "name" : "password_symbol_flag"
+          }
+        }
+      }
+    }
+  },
+  "upper_limit_default_value_setting" : {
+    "title" : "Upper limit/default value setting",
+    "data" : {
+      "upload_size_limit" : {
+        "title" : "Sent File size – Upper limit",
+        "default_value" : "[uploadSizeLimit]",
+        "input_type" : "text",
+        "name" : "upload_size_limit",
+        "title_input" : "MB"
+      },
+      "expiration_days_limit" : {
+        "title" : "Valid period – Upper limit\t",
+        "default_value" : "[expirationDaysLimit]",
+        "input_type" : "text",
+        "name" : "expiration_days_limit",
+        "title_input" : "Days"
+      },
+      "expiration_days_default" : {
+        "title" : "Valid period – Default value\t",
+        "default_value" : "[expirationDaysDefault]",
+        "input_type" : "text",
+        "name" : "expiration_days_default",
+        "title_input" : "Days"
+      },
+      "download_remainder_limit" : {
+        "title" : "Numbers can be downloaded – Upper limit",
+        "default_value" : "[downloadRemainderLimit]",
+        "input_type" : "text",
+        "name" : "download_remainder_limit",
+        "title_input" : "Times"
+      },
+      "download_remainder_default" : {
+        "title" : "Numbers can be downloaded – Default value",
+        "default_value" : "[downloadRemainderDefault]",
+        "input_type" : "text",
+        "name" : "download_remainder_default",
+        "title_input" : "Times"
+      },
+      "reply_size_limit" : {
+        "title" : "File size that can be replied – Upper limit",
+        "default_value" : "[replySizeLimit]",
+        "input_type" : "text",
+        "name" : "reply_size_limit",
+        "title_input" : "MB"
+      },
+      "reply_size_default" : {
+        "title" : "File size that can be replied – Default value",
+        "default_value" : "[replySizeDefault]",
+        "input_type" : "text",
+        "name" : "reply_size_default",
+        "title_input" : "MB"
+      },
+      "reply_remainder_limit" : {
+        "title" : "Number can be replied – Upper limit",
+        "default_value" : "[replyRemainderLimit]",
+        "input_type" : "text",
+        "name" : "reply_remainder_limit",
+        "title_input" : "Times"
+      },
+      "reply_remainder_default" : {
+        "title" : "Number can be replied – Default value",
+        "default_value" : "[replyRemainderDefault]",
+        "input_type" : "text",
+        "name" : "reply_remainder_default",
+        "title_input" : "Times"
+      },
+      "address_limit" : {
+        "title" : "Number of destinations simultaneously set",
+        "default_value" : "[addressLimit]",
+        "input_type" : "text",
+        "name" : "address_limit",
+        "title_input" : "addresses"
+      },
+      "upload_file_limit" : {
+        "title" : "Number of File simultaneously uploaded",
+        "default_value" : "[uploadFileLimit]",
+        "input_type" : "text",
+        "name" : "upload_file_limit",
+        "title_input" : "file"
+      },
+      "mail_body_input_type_default" : {
+        "title" : "Body input mode – Default value",
+        "name" : "mail_body_input_type_default",
+        "input_type" : "radio",
+        "default_value" : "[mailBodyInputTypeDefault]",
+        "data" : {
+          "1" : "Advanced mode",
+          "2" : "Comment input mode"
+        }
+      },
+      "reply_default" : {
+        "title" : "Reply – Default value\t",
+        "name" : "reply_default",
+        "input_type" : "radio",
+        "default_value" : "[replyDefault]",
+        "data" : {
+          "1" : "Necessary",
+          "0" : "Unnecessary"
+        }
+      },
+      "download_notification_default" : {
+        "title" : "Download notifications – Default value",
+        "name" : "download_notification_default",
+        "input_type" : "radio",
+        "default_value" : "[downloadNotificationDefault]",
+        "data" : {
+          "1" : "Notify",
+          "0" : "Do not notify"
+        }
+      },
+      "auto_id_auth_default" : {
+        "title" : "Automatic ID authentication – Default value",
+        "name" : "auto_id_auth_default",
+        "input_type" : "radio",
+        "default_value" : "[autoIdAuthDefault]",
+        "data" : {
+          "1" : "Use",
+          "0" : "Do not use"
+        }
+      },
+      "same_password_default" : {
+        "title" : "Password setting initial value",
+        "name" : "same_password_default",
+        "input_type" : "radio",
+        "default_value" : "[samePasswordDefault]",
+        "note" : "* Applies when \"Notifies the password to the sender and displays it on the list of file transfer information\" is selected for \"Password notification method\".",
+        "data" : {
+          "1" : "Use a common password for all destinations",
+          "0" : "Do not use a common password for all destinations"
+        }
+      },
+      "mail_language_id_default" : {
+        "title" : "mail_language_id_default",
+        "name" : "mail_language_id_default",
+        "input_type" : "radio",
+        "default_value" : "[mailLanguageIdDefault]",
+        "data" : {
+          "01" : "Japanese",
+          "02" : "English",
+          "03" : "Chinese",
+          "04" : "Korean",
+          "05" : "Vietnamese"
+        }
+      }
+    }
+  },
+  "destination_display_setting" : {
+    "title": "Destination display setting",
+    "data" : {
+      "destination_display" : {
+        "title" : "Destination display",
+        "input_type" : "checkbox",
+        "data" : {
+          "destination_display_to" : {
+            "title" : "to",
+            "name"  : "destination_display_to",
+            "default_value" : "[destinationDisplayTo]"
+          },
+          "destination_display_cc" : {
+            "title" : "cc",
+            "name"  : "destination_display_cc",
+            "default_value" : "[destinationDisplayCc]"
+          },
+          "destination_display_bcc" : {
+            "title" : "bcc",
+            "name"  : "destination_display_bcc",
+            "default_value" : "[destinationDisplayBcc]"
+          }
+        }
+      }
+    }
+  },
+  "address_book_edit_setting" : {
+    "title": "Address book edit setting",
+    "data" : {
+      "address_sharing_method" : {
+        "title" : "Address sharing method",
+        "input_type" : "radio",
+        "default_value" : "[shareAddressFlag]",
+        "name" : "share_address_flag",
+        "data" : {
+          "0" : "Use shared address",
+          "1" : "Do not use shared address     * User who do not have system administration authority can not register shared addresses."
+        }
+      }
+    }
+  },
+  "edit_source_address_setting" : {
+    "title" : "Edit source address setting",
+    "data" : {
+      "address_sharing_method" : {
+        "title" : "Edit source address",
+        "input_type" : "radio",
+        "default_value" : "[shareAddressFlag]",
+        "name" : "edit_source_address_flag",
+        "data" : {
+          "0" : "Use",
+          "1" : "Do not use"
+        }
+      }
+    }
+  },
+  "security_judgment_setting" : {
+    "title" : "Security judgment setting",
+    "data" : {
+      "forwarding_restrictions" : {
+        "title" : "Forwarding restrictions (country)",
+        "input_type" : "radio",
+        "default_value" : "[usePermissionFlag]",
+        "name" : "use_permission_flag",
+        "data" : {
+          "0" : "Use",
+          "1" : "Do not use"
+        }
+      },
+      "access_source_country_does_not_match" : {
+        "title" : "Access source country does not match",
+        "input_type" : "radio",
+        "default_value" : "[noCookieCountryCodeDiffer]",
+        "name" : "no_cookie_country_code_differ",
+        "data" : {
+          "1" : "Transition to the alert screen",
+          "2" : "Transit to the alert screen and send an alert email",
+          "3" : "Immediate lock and send alert email"
+        },
+        "note" : ""
+      },
+      "access_source_country_matches" : {
+        "title" : "Access source country matches",
+        "input_type" : "radio",
+        "default_value" : "[noCookieCountryCodeSame]",
+        "name" : "no_cookie_country_code_same",
+        "data" : {
+          "1" : " Transition to the alert screen",
+          "2" : "Transit to the alert screen and send an alert email",
+          "3" : "Immediate lock and send alert email"
+        },
+        "note" : ""
+      },
+      "alert_email_destination" : {
+        "title" : "Alert email destination",
+        "input_type" : "textarea",
+        "default_value" : "[alertMail]",
+        "name" : "alert_mail",
+        "note" : ""
+      }
+    }
+  },
+  "functions_to_prevent_accidental_transmission" : {
+    "title" : "Functions to prevent accidental transmission",
+    "data" : {
+      "functions_to_prevent_accidental_transmission" : {
+        "title" : "Functions to prevent accidental transmission",
+        "input_type" : "radio",
+        "default_value" : "[preventionIncorrectTransferFlag]",
+        "name" : "prevention_incorrect_transfer_flag",
+        "data" : {
+          "0" : "Use",
+          "1" : "TDo not use"
+        },
+        "note" : ""
+      },
+      "judged_as_the_first_address" : {
+        "title" : "Judged as the first address",
+        "input_type" : "text",
+        "name" : "first_address_judgment_count",
+        "title_input" : "addresses",
+        "note" : "",
+        "default_value" : "[firstAddressJudgmentCount]"
+      }
+    }
+  },
+  "online_operation_setting" : {
+    "title" : "Online operation setting",
+    "data" : {
+      "office_online_editing" : {
+        "title" : "Office online editing",
+        "input_type" : "radio",
+        "name" : "office_online_flag",
+        "default_value" : "[officeOnlineFlag]",
+        "data" : {
+          "1" : "Use",
+          "0" : "Do not use"
+        }
+      },
+      "view_online" : {
+        "title" : "View Online",
+        "input_type" : "radio",
+        "name" : "view_online_flag",
+        "default_value" : "[viewOnlineFlag]",
+        "data" : {
+          "1" : "Use",
+          "0" : "Do not use"
+        }
+      }
+    }
+  }
+}

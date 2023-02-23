@@ -7,6 +7,63 @@ type Props = {
 	handleOk: void,
 	handleCancel: void,
 };
+
+const PasswordSettingRadioGroup = ({triggerChangeValue}) => {
+	const list = [];
+
+	const ComplexRadioOption = ({item, optionKey, onChange, activeInput = false}) => {
+		const value = Object.values(item)[0];
+		const keyName = Object.keys(item)[0];
+		const [inputValue, setInputValue] = useState(value['default_value']);
+
+		const handleOnChange = (e) => {
+			const text = e.target.value;
+			setInputValue(e.target.value);
+			// triggerChangeValue({'dddd': 1});
+			onChange({
+				[keyName]: text
+			})
+
+		}
+		return (
+			<Radio value={optionKey}>
+				{value.title}
+				<Input
+					disabled={activeInput}
+					style={{width: 100, marginLeft: 10,}}
+					value={inputValue}
+					onChange={handleOnChange}
+				/>
+			</Radio>
+		)
+	}
+
+	const passwordSetupData = Object.values(settingConfig.mail_password_type.data);
+	passwordSetupData.map((item, key) => {
+		console.log(key, item)
+	})
+
+	for (let key in settingConfig.mail_password_type.data) {
+		const item = config[key];
+		if (typeof item == "string") {
+			list.push(<Radio key={key} value={key}>{item}</Radio>);
+		} else if (typeof item == "object") {
+			const value = Object.values(item)[0];
+			list.push(<ComplexRadioOption
+				key={key} item={item}
+				optionKey={key}
+				activeInput={key !== passwordSettingValue}
+				onChange={triggerChangeValue}
+			/>);
+		}
+	}
+	return (
+		<Space direction="vertical">
+			{list}
+		</Space>
+	)
+}
+
 const SettingModal = (props: Props) => {
 	const [form] = Form.useForm();
 	const isModalOpen = props.open;
@@ -49,58 +106,6 @@ const SettingModal = (props: Props) => {
 				"6": "MAIL_PASSWORD_TYPE_6"
 			}
 		}
-	}
-
-	const PasswordSettingRadioGroup = ({triggerChangeValue}) => {
-		const config = settingConfig.mail_password_type.data;
-		const list = [];
-
-		const ComplexRadioOption = ({item, optionKey, onChange, activeInput = false}) => {
-			const value = Object.values(item)[0];
-			const keyName = Object.keys(item)[0];
-			const [inputValue, setInputValue] = useState(value['default_value']);
-
-			const handleOnChange = (e) => {
-				const text = e.target.value;
-				setInputValue(e.target.value);
-				// triggerChangeValue({'dddd': 1});
-				onChange({
-					[keyName]: text
-				})
-
-			}
-			return (
-				<Radio value={optionKey}>
-					{value.title}
-					<Input
-						disabled={activeInput}
-						style={{width: 100, marginLeft: 10,}}
-						value={inputValue}
-						onChange={handleOnChange}
-					/>
-				</Radio>
-			)
-		}
-
-		for (let key in settingConfig.mail_password_type.data) {
-			const item = config[key];
-			if (typeof item == "string") {
-				list.push(<Radio key={key} value={key}>{item}</Radio>);
-			} else if (typeof item == "object") {
-				const value = Object.values(item)[0];
-				list.push(<ComplexRadioOption
-					key={key} item={item}
-					optionKey={key}
-					activeInput={key !== passwordSettingValue}
-					onChange={triggerChangeValue}
-				/>);
-			}
-		}
-		return (
-			<Space direction="vertical">
-				{list}
-			</Space>
-		)
 	}
 
 	const handleOnChange = (isChecked) => {
